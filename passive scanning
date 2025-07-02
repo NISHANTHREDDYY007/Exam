@@ -1,0 +1,85 @@
+Passive scanning is a non-intrusive technique that collects information about a system or network without sending any packets to the target.
+It relies on monitoring traffic in transit — making it stealthy and undetectable by firewalls or IDS (Intrusion Detection Systems).
+
+🔹 1. Set up the Environment
+Make sure Burp Suite Community Edition is installed (you already followed this part).
+
+Launch Burp Suite, start a Temporary Project and click Start Burp.
+
+Ensure Intercept is ON under the Proxy tab.
+
+🔹 2. Configure Your Browser to Use Burp Suite Proxy
+Example uses Firefox:
+
+Open Firefox, go to about:preferences
+
+Scroll to Network Settings → Click Settings
+
+Choose Manual proxy configuration:
+
+HTTP Proxy: 127.0.0.1
+
+Port: 8080
+
+Check: “Use this proxy server for all protocols”
+
+Click OK
+
+🔹 3. Import Burp CA Certificate for HTTPS Sites
+Open browser and go to: http://burp
+
+Download the CA Certificate (cacert.der)
+
+In Firefox:
+
+Go to about:preferences → Privacy & Security
+
+Under Certificates, click View Certificates
+
+Import the downloaded certificate under the Authorities tab
+
+Check "Trust this CA to identify websites"
+
+🔹 4. Start Passive Scanning
+Now open any website in Firefox — e.g., http://testphp.vulnweb.com or any vulnerable site you’re legally allowed to test.
+
+Burp will intercept the request under Proxy → Intercept.
+
+Turn off Intercept to allow the request to go through.
+
+Go to HTTP history tab under Proxy:
+
+You will see a list of all HTTP/S requests made.
+
+Click on any request to see details:
+
+Request headers
+
+Cookies
+
+User-agent
+
+Parameters
+
+URLs
+
+Sessions, tokens
+
+This is passive scanning: You are not scanning the target actively. You're just monitoring traffic that your browser generates, and observing behaviors, endpoints, technologies, headers, and security details.
+
+🔹 5. Information You Can Passively Gather:
+Technologies in use (PHP, Apache, etc.)
+
+Session tokens in cookies or headers
+
+URL endpoints and parameters
+
+User-agent headers
+
+Response codes (403, 404, 200, 500, etc.)
+
+Possible sensitive info leaks (emails, internal IPs)
+
+Redirects
+
+Server banners
